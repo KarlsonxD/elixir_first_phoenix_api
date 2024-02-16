@@ -8,7 +8,8 @@ defmodule ElixirFirstPhoenixApi.Users.User do
     field :full_name, :string
     field :gender, :string
     field :biography, :string
-    field :account_id, :binary_id
+    # creating a relationship between the account and user entry
+    belongs_to :account, ElixirFirstPhoenixApi.Accounts.Account
 
     timestamps()
   end
@@ -17,6 +18,6 @@ defmodule ElixirFirstPhoenixApi.Users.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:full_name, :gender, :biography])
-    |> validate_required([:full_name, :gender, :biography])
+    |> validate_required([:account_id])
   end
 end

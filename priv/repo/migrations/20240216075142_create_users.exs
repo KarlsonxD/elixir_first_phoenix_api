@@ -7,11 +7,13 @@ defmodule ElixirFirstPhoenixApi.Repo.Migrations.CreateUsers do
       add :full_name, :string
       add :gender, :string
       add :biography, :text
-      add :account_id, references(:accounts, on_delete: :nothing, type: :binary_id)
+      # if an account is deleted, the user entry should be removed as well
+      add :account_id, references(:accounts, on_delete: :delete_all, type: :binary_id)
 
       timestamps()
     end
 
-    create index(:users, [:account_id])
+    # makes these 2 properties queryable
+    create index(:users, [:account_id, :full_name])
   end
 end

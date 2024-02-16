@@ -9,5 +9,8 @@ defmodule ElixirFirstPhoenixApi.Repo.Migrations.CreateAccounts do
 
       timestamps()
     end
+
+    # make sure that the mail column is unique
+    create unique_index(:accounts, [:email])
   end
 end
