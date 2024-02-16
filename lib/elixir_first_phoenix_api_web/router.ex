@@ -7,5 +7,6 @@ defmodule ElixirFirstPhoenixApiWeb.Router do
 
   scope "/api", ElixirFirstPhoenixApiWeb do
     pipe_through :api
+    get "/", Controllers.DefaultController, :index
   end
 end
